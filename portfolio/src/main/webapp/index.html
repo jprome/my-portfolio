@@ -1,18 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>$('.carousel').carousel({
+      interval: 20
+    })</script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+
+  <body onload="addRandomQuote()">
+    <div id="nav-placeholder"></div>
+
+    <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Jose's Portfolio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#hobbies">Hobbies</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#code">Code</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#places">Places</a>
+          </li>
+      </div>
+    </nav>
+
+    <br>
+    <br>
+
+    <div class="jumbotron text-center container-fluied">
+      <h2 >Here is a quote that I like:</h2>
+      <blockquote class="blockquote">
+        <p id ="quote-container" class="mb-0 "></p>
+        <footer id="name-container" class="blockquote-footer"><cite title="Source Title"></cite></footer>
+      </blockquote>
     </div>
+    <div id="hobbies" class="section1 grad1 container-fluid">
+    <h1 style="color:#000000">Hobbies</h1>
+
+    <div class="card-group">
+      <div class="card">
+        <img src="images/food.jpg" class="cropped card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="section-in">Eating Healthy</h5>
+          <p class="card-text section-in">Lately, eating healthier has been one of my main priorities. Eating vegan food more frequently is definitedly something to get used to!</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/music.jpg" class="cropped card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title section-in">Music</h5>
+          <p class="card-text section-in">It helps me get relaxed, inspired, and curious! I have explored into all types of genres and every day I find something different to listen to</small></p>
+          <p class="card-text section-in"></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/books.jpeg" class="cropped card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title section-in">Books</h5>
+          <p class="card-text section-in">I read all the time. Books on philosophy, history, languages, cultures, psychology, fiction.</p>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+    <div id="code" class="section2 grad2 container-fluid">
+      <h1 style="color:#000000" >Coding Interests</h1>
+      <br>
+      <div class="row">
+
+        <div class="col">
+          <div style="height:230px;width:300px" class="card" style="width: 18rem;">
+            <img src="images/code3.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 style="color:#000000" class="card-title">Web Development</h5>
+              <p style="color:#000000" class="card-text"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div style="height:230px;width:300px" class="card" style="width: 18rem;">
+            <img  src="images/code4.png" class="card-img-top" alt="...">
+            <div src="card-body">
+              <h5 style="color:#000000" class="card-title">Game Development</h5>
+              <p style="color:#000000" class="card-text"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div style="height:230px;width:300px" class="card" style="width: 18rem;">
+            <img src="images/code1.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 style="color:#000000"class="card-title">Machine Learning</h5>
+              <p style="color:#000000" class="card-text"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div style="height:230px;width:300px"  class="card" style="width: 18rem;">
+            <img src="images/code2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 style="color:#000000" class="card-title">Financial Technology</h5>
+              <p style="color:#000000" class="card-text"></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="places" classes="container"></div>
+        <div data-spy="scroll" data-target="#nav-placeholder" data-offset="0">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/img_1.JPG" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                <h5>Miami, US</h5>
+                <p></p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="images/img_2.JPG" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                <h5>Xi'an, China</h5>
+                <p>Here I saw one of the most memorable shows in my life</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="images/img_3.JPG" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                <h5>Gainesville, US</h5>
+                <p></p>
+                </div>
+            </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
+

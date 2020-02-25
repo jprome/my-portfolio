@@ -1,9 +1,43 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
 }
 
-#greeting-container {
-  margin-top: 20px;
+.section1{
+    padding-top:50px;
+    padding-bottom: 50px;
+
+    color: #fff; 
+    border-color: #000000;
+    background-color: #555555;
+    border-style: solid;
+    border-width: medium;
+
+}
+
+.section2{
+    padding-top:50px;
+    padding-bottom: 50px;
+    color: #fff; 
+    border-color: #000000;
+    border-style: solid;
+    border-width: medium;
+    background-color: #556699
+}
+
+.section-in {
+    color: #000; 
+}
+body {
+    position: relative; 
+  }
+
+.cropped {
+    width: 100px; /* width of container */
+    height: 300px; /* height of container */
+
+}
+.imagesCarousel{
+    width: 100%;
+    height: 500px
 }

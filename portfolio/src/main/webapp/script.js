@@ -1,28 +1,39 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+function addRandomQuote() {
+    const quotes =
+        ['What matters in life is not what happens to you but what you remember and how you remember it.',
+         'It is not true that people stop pursuing dreams because they grow old, they grow old because they stop pursuing dreams.',
+         'All profound distraction opens certain doors. You have to allow yourself to be distracted when you are unable to concentrate', 
+         'You are never too old to set another goal or to dream a new dream.',
+         'True humility is not thinking less of yourself; it is thinking of yourself less.',
+         'Do not fear to be eccentric in opinion, for every opinion now accepted was once eccentric.',
+         'Happiness must happen, and the same holds for success: you have to let it happen by not caring about it.',
+         'Pursue what is meaningful (not what is expedient).', 
+         'Living is a constant process of deciding what we are going to do.',
+         'Who looks outside, dreams; who looks inside, awakes.',
+         ' I am I plus my circumstances',
+         'Without music, life would be a mistake',
+         'Every man takes the limits of his own field of vision for the limits of the world.',
+         'The world of reality has its limits; the world of imagination is boundless.',
+         'The limits of my language mean the limits of my world.',
+         'Challenging the meaning of life is the truest expression of the state of being human',
+         'When you want something, all the universe conspires in helping you to achieve it.',
+         'If you want to be happy, be.'
+        ];
+  
+    const names = ['Gabriel Garcia Marquez','Gabriel Garcia Marquez','Julio Cortazar','CS Lewis','CS Lewis','Beltrand Russel','Viktor Frankl',
+                   'Jordan Peterson',' Jose Ortega y Gasset',' Carl Jung','Jose Ortega y Gasset',' Fiedrich Nietzche','Arthur Schopenhauer','Jean-Jacques Rousseau',
+                   ' Ludwig Wittgenstein','Viktor Frankl','Paulo Coelho', 'Leo Tolstoy'
+                ]
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+    const index = Math.floor(Math.random() * quotes.length);
+    // Pick a random greeting.
+    const quote = quotes[index];
+    const name = names[index];
+  
+    // Add it to the page.
+    const quoteContainer = document.getElementById('quote-container');
+    quoteContainer.innerText = quote;
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-}
+    const nameContainer = document.getElementById('name-container');
+    nameContainer.innerText = name;
+  }
