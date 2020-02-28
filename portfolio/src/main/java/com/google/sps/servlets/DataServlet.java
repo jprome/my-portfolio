@@ -14,19 +14,54 @@
 
 package com.google.sps.servlets;
 
+import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private ArrayList<String> quotes;
+
+  @Override
+    public void init() {
+        
+     quotes = new ArrayList<>();
+    quotes.add("A ship in port is safe, but that is not what ships are for - Grace Hopper");
+    quotes.add("They told me computers could only do arithmetic. - Grace Hopper");
+    quotes.add("A ship in port is safe, but that is not what ships are built for. - Grace Hopper");
+    }
+
+ private String convertToJson(ArrayList<String> data) {
+    String json ="";
+     json += "{\"comments\":[ ";
+    for (int i = 0 ; i < data.size(); i++){
+         json += "{";
+        json += "\"comment\": ";
+        json += "\"" + data.get(i)+ "\"";
+        json += "}";
+        if (i != data.size()-1){
+         json += ", ";
+        }
+    }
+    json += " ]}";   
+    return json;
+  }
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
+ 
+    String json = convertToJson(quotes);
+
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+
   }
 }
