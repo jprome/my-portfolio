@@ -14,6 +14,12 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,44 +30,83 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> quotes;
+  private class Comment{
+    String comment;
+    String name;
+
+    public Comment(String c, String n){
+        comment = c;
+        name = n;
+    }
+  }
+
+  private List<Comment> comments;
 
   @Override
-    public void init() {
+  public void init() {
         
-     quotes = new ArrayList<>();
-    quotes.add("A ship in port is safe, but that is not what ships are for - Grace Hopper");
-    quotes.add("They told me computers could only do arithmetic. - Grace Hopper");
-    quotes.add("A ship in port is safe, but that is not what ships are built for. - Grace Hopper");
-    }
-
- private String convertToJson(ArrayList<String> data) {
-    String json ="";
-     json += "{\"comments\":[ ";
-    for (int i = 0 ; i < data.size(); i++){
-         json += "{";
-        json += "\"comment\": ";
-        json += "\"" + data.get(i)+ "\"";
-        json += "}";
-        if (i != data.size()-1){
-         json += ", ";
-        }
-    }
-    json += " ]}";   
-    return json;
+    comments = new ArrayList<>();
+    //comments.add(new Comment("HEY","JOSE"));
   }
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
- 
-    String json = convertToJson(quotes);
+
+    Query query = new Query("Comment");
+    //addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    comments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String comment = (String) entity.getProperty("comment");
+      String name  = (String) entity.getProperty("name");
+
+
+      Comment task = new Comment(comment,name);
+      comments.add(task);
+    }
+
+    String json = convertToJsonUsingGson(comments);
 
     response.setContentType("application/json;");
     response.getWriter().println(json);
+  }
 
+  
+
+  private String convertToJsonUsingGson(List<Comment> serverStats) {
+    Gson gson = new Gson();
+    String json = gson.toJson(serverStats);
+    return json;
+}
+
+
+@Override
+public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    String comment = request.getParameter("comment-input");
+    String name = request.getParameter("name-input");
+
+    Comment newComment = new Comment(name,comment);
+   // String json = convertToJsonUsingGson(newComment);
+   // comments.add(newComment);
+
+    response.setContentType("text/html;");
+
+    Entity taskEntity = new Entity("Comment");
+    taskEntity.setProperty("comment", comment);
+    taskEntity.setProperty("name", name);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+
+    response.sendRedirect("/index.html");
   }
 }
+

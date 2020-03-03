@@ -34,18 +34,33 @@ function addRandomQuote() {
     nameContainer.innerText = name;
   }
 
-function addName() {
-     fetch('/data').then(response => response.json()).then((data) => {
-        document.getElementById('greeting-container').innerText = data.comments[0].comment;
-
-        
-    });
-   
+function addComment() {
     
+
+    const statsListElement = document.getElementById('comment-container');
+    statsListElement.innerHTML = '';
+     fetch('/data').then(response => response.json()).then((data) => {
+           console.log(data.length);
+         for ( var i = 0 ; i < data.length ; i++ ){
+           statsListElement.appendChild(createListElement(data[i]));
+           console.log(data[i]);
+         }
+    });
+
+
 }
 
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+function createListElement(data) {
+  const mainDiv = document.createElement('div')
+  const liComment = document.createElement('li');
+  const liName = document.createElement('li');
+
+  liComment.innerText = data.comment;
+  liName.innerText = data.name;
+  mainDiv.appendChild(liComment);
+  mainDiv.appendChild(liName);
+ // mainDiv.innerText = "asdf";
+ // mainDiv.style('padding-bottom: 50px;')
+
+  return mainDiv;
 }
