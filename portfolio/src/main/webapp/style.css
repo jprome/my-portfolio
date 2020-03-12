@@ -3,7 +3,7 @@
     height: 100%;
 }
 
-.section1{
+.section1 , section2, section3 {
     padding-top:50px;
     padding-bottom: 50px;
 
@@ -12,16 +12,11 @@
     background-color: #555555;
     border-style: solid;
     border-width: medium;
-
 }
-
+.section1 {
+    background-color: #555555;
+}
 .section2{
-    padding-top:50px;
-    padding-bottom: 50px;
-    color: #fff; 
-    border-color: #000000;
-    border-style: solid;
-    border-width: medium;
     background-color: #556699
 }
 
@@ -39,5 +34,15 @@ body {
 }
 .imagesCarousel{
     width: 100%;
-    height: 500px
+    height: 500px;
+}
+
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+}
+
+#quote-container {
+  margin-top: 20px;
 }
