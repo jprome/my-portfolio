@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
 
-  <body onload="addRandomQuote()">
+  <body onload="addRandomQuote(); addComment()">
     <div id="nav-placeholder"></div>
 
     <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Jose's Portfolio</a>
+      <a class="navbar-brand"  href="#">Jose's Portfolio</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -33,7 +33,6 @@
           </li>
       </div>
     </nav>
-
     <br>
     <br>
 
@@ -124,7 +123,7 @@
       </div>
     </div>
 
-    <div id="places" classes="container"></div>
+    <div id="places" classes="container">
         <div data-spy="scroll" data-target="#nav-placeholder" data-offset="0">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -163,7 +162,24 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
             </a>
+            </div>
         </div>
+    </div>
+
+    <div id="comment-container"></div>
+
+    <form action="/data" method="POST">
+
+            <p>Enter Comment</p>
+            <textarea name="comment-input">Your Comment</textarea>
+            <br/><br/>
+
+            <p>Enter Name</p>
+            <textarea name="name-input">Your Name</textarea>
+            <br/><br/>
+
+        <input type="submit" />
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
