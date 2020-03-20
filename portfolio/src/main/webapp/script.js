@@ -1,5 +1,4 @@
 function addRandomQuote() {
-
     const quotes =
         [{quote:'What matters in life is not what happens to you but what you remember and how you remember it.', source:'Gabriel Garcia Marquez'},
          {quote:'It is not true that people stop pursuing dreams because they grow old, they grow old because they stop pursuing dreams.', source:'Gabriel Garcia Marquez'},
@@ -19,10 +18,10 @@ function addRandomQuote() {
          {quote:'Challenging the meaning of life is the truest expression of the state of being human',source:'Viktor Frankl'},
          {quote:'When you want something, all the universe conspires in helping you to achieve it.',source:'Paulo Coelho'},
          {quote:'If you want to be happy, be.',source:'Leo Tolstoy'}
-        ];
-  
+    ];
+    
     const index = Math.floor(Math.random() * quotes.length);
-    // Pick a random greeting.
+    // Pick a random quote.
     const quote = quotes[index].quote;
     const name = quotes[index].source;
   
@@ -32,35 +31,49 @@ function addRandomQuote() {
 
     const nameContainer = document.getElementById('name-container');
     nameContainer.innerText = name;
-  }
+}
 
 function addComment() {
-    
-
     const statsListElement = document.getElementById('comment-container');
     statsListElement.innerHTML = '';
-     fetch('/data').then(response => response.json()).then((data) => {
+    statsListElement.className = 'row';
+    fetch('/data').then(response => response.json()).then((data) => {
            console.log(data.length);
          for ( var i = 0 ; i < data.length ; i++ ){
            statsListElement.appendChild(createListElement(data[i]));
-           console.log(data[i]);
+                console.log(data[i]);
          }
     });
-
-
 }
 
-function createListElement(data) {
-  const mainDiv = document.createElement('div')
-  const liComment = document.createElement('li');
-  const liName = document.createElement('li');
+function addCommentBox(){
+    fetch('/home').then(response => response.text()).then((data) => {
+        $(document).ready(function(){
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = data;
+           // $("#comment-input-box").text(tempDiv);
+            console.log(data);
+            const statsListElement = document.getElementById('comment-input-box');
+            statsListElement.appendChild(tempDiv);
+        });
+    });
+}
 
+function createListElement(data){
+  const mainDiv = document.createElement('div')
+  const liComment = document.createElement('div');
+  const liName = document.createElement('div');
+
+  mainDiv.id = "comment";
+  mainDiv.className = 'jumbotron col-sm-6 container';
+  mainDiv.style.paddingRight = '50px';
+
+  liComment.sizeFont = '50px';
   liComment.innerText = data.comment;
-  liName.innerText = data.name;
+  liName.innerText = "- "+ data.name;
+
   mainDiv.appendChild(liComment);
   mainDiv.appendChild(liName);
- // mainDiv.innerText = "asdf";
- // mainDiv.style('padding-bottom: 50px;')
-
   return mainDiv;
+
 }
